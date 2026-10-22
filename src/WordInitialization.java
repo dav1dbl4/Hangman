@@ -4,14 +4,6 @@ import java.util.Random;
 
 public class WordInitialization {
     public static String wordInit() {
-//        List<String> ArrayList = new ArrayList<>(List.of(
-//                "Олово", "Света"
-//        ));
-
-//        List<String> ArrayList = new ArrayList<>(List.of(
-//                "Олово"
-//        ));
-
         List<String> ArrayList = new ArrayList<>(List.of(
                 "Шприц", "Слово", "Томат", "Шпала", "Плита", "Кант", "Хроника", "Зал", "Галера", "Балл", "Вес", "Кафель", "Знак", "Фильтр", "Башня",
                 "Кондитер", "Омар", "Чан", "Пламя", "Банк", "Тетерев", "Муж", "Камбала", "Груз", "Кино", "Лаваш", "Калач", "Геолог", "Бальзам", "Бревно",
