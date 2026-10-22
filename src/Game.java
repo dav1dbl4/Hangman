@@ -1,7 +1,4 @@
-import jdk.swing.interop.SwingInterOpUtils;
-
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class Game {
