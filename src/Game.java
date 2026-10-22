@@ -87,14 +87,14 @@ public class Game {
         }
     }
 
-    public static void getAnswerWord(int index) {
+    private static void getAnswerWord(int index) {
         char letter = answerWord.charAt(index);
         char[] maskArray = answerWordMask.toCharArray();
         maskArray[index] = letter;
         answerWordMask = new String(maskArray);
     }
 
-    public static boolean checkInputLetter(char answerLetter) {
+    private static boolean checkInputLetter(char answerLetter) {
         if (Character.isDigit(answerLetter) || !Character.isLetter(answerLetter)) {
             System.out.println("Ошибка ввода. Попробуйте еще раз.");
             Menu.pressToContinue();
@@ -110,7 +110,7 @@ public class Game {
         return true;
     }
 
-    public static void printGame() {
+    private static void printGame() {
         HangmanDrawing.drawHangman(errorCount);
 
         if (answerWordMask.isEmpty()) {
