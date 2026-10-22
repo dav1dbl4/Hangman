@@ -70,28 +70,26 @@ public class Game {
                     continue;
                 }
 
-                if (errorCount == errorCountMax) {
-                    printGame();
-                    System.out.println("Вы проиграли. Загаданное слово: " + answerWord);
-                    gameOn = false;
-                    Menu.pressToContinue();
-                    Menu.initStartMenu();
-                } else if (!answerWordMask.contains("_")) {
-                    printGame();
-                    System.out.println("Поздравляем! Вы выиграли!");
-                    gameOn = false;
-                    Menu.pressToContinue();
-                    Menu.initStartMenu();
-                }
+                gameResult();
             }
         }
     }
 
-    private static void getAnswerWord(int index) {
-        char letter = answerWord.charAt(index);
-        char[] maskArray = answerWordMask.toCharArray();
-        maskArray[index] = letter;
-        answerWordMask = new String(maskArray);
+    private static void printGame() {
+        HangmanDrawing.drawHangman(errorCount);
+
+        if (answerWordMask.isEmpty()) {
+            for (int i = 0; i < answerWord.length(); i++) {
+                answerWordMask += "_";
+            }
+        }
+
+//        System.out.println("Загаданное слово: " + answerWord);
+
+        System.out.println("Загаданное слово: " + answerWordMask);
+        System.out.println("Правильные буквы: " + correctLetters);
+        System.out.println("Неправильные буквы: " + wrongLetters);
+        System.out.println("Количество ошибок: " + errorCount + "/" + errorCountMax + "\n");
     }
 
     private static boolean checkInputLetter(char answerLetter) {
@@ -110,20 +108,26 @@ public class Game {
         return true;
     }
 
-    private static void printGame() {
-        HangmanDrawing.drawHangman(errorCount);
+    private static void getAnswerWord(int index) {
+        char letter = answerWord.charAt(index);
+        char[] maskArray = answerWordMask.toCharArray();
+        maskArray[index] = letter;
+        answerWordMask = new String(maskArray);
+    }
 
-        if (answerWordMask.isEmpty()) {
-            for (int i = 0; i < answerWord.length(); i++) {
-                answerWordMask += "_";
-            }
+    private static void gameResult() {
+        if (errorCount == errorCountMax) {
+            printGame();
+            System.out.println("Вы проиграли. Загаданное слово: " + answerWord + "\n");
+            gameOn = false;
+            Menu.pressToContinue();
+            Menu.initStartMenu();
+        } else if (!answerWordMask.contains("_")) {
+            printGame();
+            System.out.println("Поздравляем! Вы выиграли!\n");
+            gameOn = false;
+            Menu.pressToContinue();
+            Menu.initStartMenu();
         }
-
-//        System.out.println("Загаданное слово: " + answerWord);
-
-        System.out.println("Загаданное слово: " + answerWordMask);
-        System.out.println("Правильные буквы: " + correctLetters);
-        System.out.println("Неправильные буквы: " + wrongLetters);
-        System.out.println("Количество ошибок: " + errorCount + "/" + errorCountMax);
     }
 }
