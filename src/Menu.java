@@ -5,7 +5,7 @@ public class Menu {
         System.out.println("[1] Начать новую игру");
         System.out.println("[2] Выйти из приложения\n");
 
-        System.out.println("Введите номер необходимой команды:");
+        System.out.println("Введите номер команды:");
         Scanner inputScanner = new Scanner(System.in);
         int input = inputScanner.nextInt();
 
