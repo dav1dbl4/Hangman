@@ -18,18 +18,7 @@ public class Game {
         while (gameOn) {
             printGame();
 
-            System.out.println("Введите букву:");
-            Scanner inputLetterScanner = new Scanner(System.in);
-            String inputLetter = inputLetterScanner.nextLine().toUpperCase();
-            char answerLetter = ' ';
-
-            if (inputLetter.length() == 1) {
-                answerLetter = inputLetter.charAt(0);
-            }
-            else {
-                System.out.println("Ошибка ввода. Попробуйте еще раз.");
-                continue;
-            }
+            char answerLetter = readLetter();
 
             if (checkInputLetter(answerLetter)) {
 
@@ -68,6 +57,20 @@ public class Game {
     private static void makeMask() {
         for (int i = 0; i < word.length(); i++) {
             mask += "_";
+        }
+    }
+
+    private static char readLetter() {
+        System.out.println("Введите букву:");
+        Scanner inputLetterScanner = new Scanner(System.in);
+        String inputLetter = inputLetterScanner.nextLine().toUpperCase();
+
+        if (inputLetter.length() == 1) {
+            return inputLetter.charAt(0);
+        }
+        else {
+            System.out.println("Ошибка ввода. Попробуйте еще раз.");
+            return ' ';
         }
     }
 
