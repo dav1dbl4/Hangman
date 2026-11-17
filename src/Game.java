@@ -98,7 +98,8 @@ public class Game {
             return false;
         }
 
-        if (answerLetter >= 'a' && answerLetter <= 'z' || answerLetter >= 'A' && answerLetter <= 'Z') {
+        answerLetter = Character.toLowerCase(answerLetter);
+        if (answerLetter >= 'a' && answerLetter <= 'z') {
             System.out.println("Ошибка ввода. Попробуйте еще раз.");
             Menu.pressToContinue();
             return false;
@@ -121,14 +122,12 @@ public class Game {
             System.out.println();
             gameOn = false;
             Menu.pressToContinue();
-            Menu.startMenu();
         } else if (!mask.contains("_")) {
             printGame();
             System.out.println("Поздравляем! Вы выиграли!");
             System.out.println();
             gameOn = false;
             Menu.pressToContinue();
-            Menu.startMenu();
         }
     }
 }
