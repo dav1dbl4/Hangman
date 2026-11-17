@@ -1,11 +1,12 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Game {
     private static int errorCount;
     private static final int errorCountMax = 9;
-    private static ArrayList<Character> wrongLetters;
-    private static ArrayList<Character> correctLetters;
+    private static List<Character> wrongLetters;
+    private static List<Character> correctLetters;
     private static String word;
     private static String mask;
     private static boolean gameOn;
