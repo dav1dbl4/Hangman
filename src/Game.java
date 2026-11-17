@@ -13,12 +13,7 @@ public class Game {
 
 
     public static void start() {
-        errorCount = 0;
-        wrongLetters = new ArrayList<>();
-        correctLetters = new ArrayList<>();
-        word = WordInitialization.getRandomWord().toUpperCase();
-        mask = "";
-        gameOn = true;
+        initVariables();
 
         while (gameOn) {
             printGame();
@@ -65,9 +60,18 @@ public class Game {
                     continue;
                 }
 
-                finishGame();
+                checkEndGame();
             }
         }
+    }
+
+    private static void initVariables() {
+        errorCount = 0;
+        wrongLetters = new ArrayList<>();
+        correctLetters = new ArrayList<>();
+        word = WordInitialization.getRandomWord().toUpperCase();
+        mask = "";
+        gameOn = true;
     }
 
     private static void printGame() {
@@ -110,17 +114,18 @@ public class Game {
         mask = new String(maskArray);
     }
 
-    private static void finishGame() {
+    private static void checkEndGame() {
         if (errorCount == errorCountMax) {
-            printGame();
-            System.out.println("Вы проиграли. Загаданное слово: " + word);
-            System.out.println();
-            gameOn = false;
+            endGame("Вы проиграли. Загаданное слово: " + word);
         } else if (!mask.contains("_")) {
-            printGame();
-            System.out.println("Поздравляем! Вы выиграли!");
-            System.out.println();
-            gameOn = false;
+            endGame("Поздравляем! Вы выиграли!");
         }
+    }
+
+    private static void endGame(String message) {
+        printGame();
+        System.out.println(message);
+        System.out.println();
+        gameOn = false;
     }
 }
