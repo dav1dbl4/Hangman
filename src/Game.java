@@ -7,6 +7,11 @@ public class Game {
     private static final int errorCountMax = 9;
     private static List<Character> wrongLetters;
     private static List<Character> correctLetters;
+    private static final List<Character> RUSSIAN_LETTERS = List.of(
+            'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И', 'Й',
+            'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф',
+            'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ы', 'Ь', 'Э', 'Ю', 'Я'
+    );
     private static String word;
     private static String mask;
     private static boolean gameOn;
@@ -75,13 +80,7 @@ public class Game {
     }
 
     private static boolean checkInputLetter(char answerLetter) {
-        if (Character.isDigit(answerLetter) || !Character.isLetter(answerLetter)) {
-            System.out.println("Ошибка ввода. Попробуйте еще раз.");
-            return false;
-        }
-
-        answerLetter = Character.toLowerCase(answerLetter);
-        if (answerLetter >= 'a' && answerLetter <= 'z') {
+        if (!RUSSIAN_LETTERS.contains(answerLetter)) {
             System.out.println("Ошибка ввода. Попробуйте еще раз.");
             return false;
         }
