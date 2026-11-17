@@ -36,10 +36,4 @@ public class Menu {
             }
         }
     }
-
-    public static void pressToContinue() {
-        System.out.println("Нажмите Enter для продолжения...");
-        Scanner scanner = new Scanner(System.in);
-        scanner.nextLine();
-    }
 }

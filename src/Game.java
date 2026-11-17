@@ -32,8 +32,7 @@ public class Game {
                 answerLetter = inputLetter.charAt(0);
             }
             else {
-                System.out.println("Ошибка ввода! Попробуйте еще раз.");
-                Menu.pressToContinue();
+                System.out.println("Ошибка ввода. Попробуйте еще раз.");
                 continue;
             }
 
@@ -54,7 +53,6 @@ public class Game {
                 else {
                     System.out.println("Вы уже вводили эту букву.");
                     isCorrectLetter = true;
-                    Menu.pressToContinue();
                     continue;
                 }
 
@@ -64,7 +62,6 @@ public class Game {
                 }
                 else if (wrongLetters.contains(answerLetter)) {
                     System.out.println("Вы уже вводили эту букву.");
-                    Menu.pressToContinue();
                     continue;
                 }
 
@@ -94,14 +91,12 @@ public class Game {
     private static boolean checkInputLetter(char answerLetter) {
         if (Character.isDigit(answerLetter) || !Character.isLetter(answerLetter)) {
             System.out.println("Ошибка ввода. Попробуйте еще раз.");
-            Menu.pressToContinue();
             return false;
         }
 
         answerLetter = Character.toLowerCase(answerLetter);
         if (answerLetter >= 'a' && answerLetter <= 'z') {
             System.out.println("Ошибка ввода. Попробуйте еще раз.");
-            Menu.pressToContinue();
             return false;
         }
 
@@ -121,13 +116,11 @@ public class Game {
             System.out.println("Вы проиграли. Загаданное слово: " + word);
             System.out.println();
             gameOn = false;
-            Menu.pressToContinue();
         } else if (!mask.contains("_")) {
             printGame();
             System.out.println("Поздравляем! Вы выиграли!");
             System.out.println();
             gameOn = false;
-            Menu.pressToContinue();
         }
     }
 }
