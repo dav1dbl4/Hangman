@@ -1,8 +1,6 @@
 public class HangmanDrawing {
-    public static void drawHangman(int errorCount) {
-        switch (errorCount) {
-            case 0:
-                System.out.println("""
+    private static final String[] PICTURES = {
+            """
                     
                     
                     
@@ -10,10 +8,8 @@ public class HangmanDrawing {
                     
                    
                     ________________
-                    """);
-                break;
-            case 1:
-                System.out.println("""
+                    """,
+            """
                     
                      |
                      |
@@ -21,10 +17,8 @@ public class HangmanDrawing {
                      |
                      |
                     _|_______________
-                    """);
-                break;
-            case 2:
-                System.out.println("""
+                    """,
+            """
                       _________
                      |
                      |
@@ -32,10 +26,8 @@ public class HangmanDrawing {
                      |
                      |
                     _|_______________
-                    """);
-                break;
-            case 3:
-                System.out.println("""
+                    """,
+            """
                      __________
                      |        |
                      |
@@ -43,21 +35,17 @@ public class HangmanDrawing {
                      |
                      |
                     _|_______________
-                    """);
-                break;
-            case 4:
-                System.out.println("""
+                    """,
+            """
                      __________
                      |        |
                      |        ○
-                     |        
+                     |
                      |
                      |
                     _|_______________
-                    """);
-                break;
-            case 5:
-                System.out.println("""
+                    """,
+            """
                      __________
                      |        |
                      |        ○
@@ -65,10 +53,8 @@ public class HangmanDrawing {
                      |
                      |
                     _|_______________
-                    """);
-                break;
-            case 6:
-                System.out.println("""
+                    """,
+            """
                      __________
                      |        |
                      |        ○
@@ -76,10 +62,8 @@ public class HangmanDrawing {
                      |
                      |
                     _|_______________
-                    """);
-                break;
-            case 7:
-                System.out.println("""
+                    """,
+            """
                      __________
                      |        |
                      |        ○
@@ -87,10 +71,8 @@ public class HangmanDrawing {
                      |
                      |
                     _|_______________
-                    """);
-                break;
-            case 8:
-                System.out.println("""
+                    """,
+            """
                      __________
                      |        |
                      |        ○
@@ -98,10 +80,8 @@ public class HangmanDrawing {
                      |       /
                      |
                     _|_______________
-                    """);
-                break;
-            case 9:
-                System.out.println("""
+                    """,
+            """
                      __________
                      |        |
                      |        ○
@@ -109,8 +89,11 @@ public class HangmanDrawing {
                      |       / \\
                      |
                     _|_______________
-                    """);
-                break;
-        }
+                    """
+    };
+
+    public static void drawHangman(int pictureNumber) {
+        String picture = PICTURES[pictureNumber];
+        System.out.println(picture);
     }
 }
