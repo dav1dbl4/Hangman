@@ -32,33 +32,8 @@ public class Game {
             }
 
             if (checkInputLetter(answerLetter)) {
-                boolean isCorrectLetter = false;
 
-                if (!correctLetters.contains(answerLetter)) {
-                    for (int i = 0; i < word.length(); i++) {
-                        if (word.charAt(i) == answerLetter) {
-                            revealLetter(i);
-
-                            if (!correctLetters.contains(answerLetter))
-                                correctLetters.add(answerLetter);
-                            isCorrectLetter = true;
-                        }
-                    }
-                }
-                else {
-                    System.out.println("Вы уже вводили эту букву.");
-                    isCorrectLetter = true;
-                    continue;
-                }
-
-                if (!isCorrectLetter && !wrongLetters.contains(answerLetter)) {
-                    wrongLetters.add(answerLetter);
-                    errorCount++;
-                }
-                else if (wrongLetters.contains(answerLetter)) {
-                    System.out.println("Вы уже вводили эту букву.");
-                    continue;
-                }
+                handleLetter(answerLetter);
 
                 checkEndGame();
             }
@@ -78,9 +53,7 @@ public class Game {
         HangmanDrawing.drawHangman(errorCount);
 
         if (mask.isEmpty()) {
-            for (int i = 0; i < word.length(); i++) {
-                mask += "_";
-            }
+            makeMask();
         }
 
 //        System.out.println("Загаданное слово: " + answerWord);
@@ -90,6 +63,12 @@ public class Game {
         System.out.println("Неправильные буквы: " + wrongLetters);
         System.out.printf("Количество ошибок: %d/%d \n", errorCount, errorCountMax);
         System.out.println();
+    }
+
+    private static void makeMask() {
+        for (int i = 0; i < word.length(); i++) {
+            mask += "_";
+        }
     }
 
     private static boolean checkInputLetter(char answerLetter) {
@@ -107,10 +86,29 @@ public class Game {
         return true;
     }
 
-    private static void revealLetter(int index) {
-        char letter = word.charAt(index);
+    private static void handleLetter(char letter) {
+        if (correctLetters.contains(letter) || wrongLetters.contains(letter)) {
+            System.out.println("Вы уже вводили эту букву.");
+            return;
+        }
+
+        if (word.indexOf(letter) >= 0) {
+            revealLetter(letter);
+            correctLetters.add(letter);
+        } else {
+            wrongLetters.add(letter);
+            errorCount++;
+        }
+    }
+
+    private static void revealLetter(char letter) {
         char[] maskArray = mask.toCharArray();
-        maskArray[index] = letter;
+        for (int i = 0; i < word.length(); i++) {
+            if (word.charAt(i) == letter) {
+                maskArray[i] = letter;
+            }
+        }
+
         mask = new String(maskArray);
     }
 
