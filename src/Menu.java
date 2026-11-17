@@ -5,13 +5,23 @@ public class Menu {
     private static final int QUIT = 2;
 
     public static void startMenu() {
+        Scanner inputScanner = new Scanner(System.in);
+
         while (true) {
             System.out.printf("[%d] Начать новую игру \n", START);
             System.out.printf("[%d] Выйти из приложения \n", QUIT);
             System.out.println();
 
             System.out.println("Введите номер команды:");
-            Scanner inputScanner = new Scanner(System.in);
+
+            if (!inputScanner.hasNextInt()) {
+                System.out.println("Введено неверное значение!");
+                System.out.println("Попробуйте еще раз.");
+                System.out.println();
+                inputScanner.nextLine();
+                continue;
+            }
+
             int input = inputScanner.nextInt();
 
             if (input == START) {
