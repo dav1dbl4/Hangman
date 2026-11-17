@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Random;
 
 public class WordInitialization {
-    public static String wordInit() {
+    public static String getRandomWord() {
         List<String> ArrayList = new ArrayList<>(List.of(
                 "Шприц", "Слово", "Томат", "Шпала", "Плита", "Кант", "Хроника", "Зал", "Галера", "Балл", "Вес", "Кафель", "Знак", "Фильтр", "Башня",
                 "Кондитер", "Омар", "Чан", "Пламя", "Банк", "Тетерев", "Муж", "Камбала", "Груз", "Кино", "Лаваш", "Калач", "Геолог", "Бальзам", "Бревно",

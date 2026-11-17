@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Menu {
-    public static void initStartMenu() {
+    public static void startMenu() {
         System.out.println("[1] Начать новую игру");
         System.out.println("[2] Выйти из приложения\n");
 
@@ -12,19 +12,19 @@ public class Menu {
         switch (input){
             case 1:
                 System.out.println("Игра начата. Удачи!");
-                Game.gameStart();
+                Game.start();
                 break;
             case 2:
                 System.exit(0);
             default:
                 System.out.println("Введено неверное значение! \nПопробуйте еще раз.\n");
-                initStartMenu();
+                startMenu();
         }
     }
 
     public static void pressToContinue() {
         System.out.println("Нажмите Enter для продолжения...");
-        Scanner pressToContinue = new Scanner(System.in);
-        pressToContinue.nextLine();
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
     }
 }

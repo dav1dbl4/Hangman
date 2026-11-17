@@ -6,17 +6,17 @@ public class Game {
     private static final int errorCountMax = 9;
     private static ArrayList<Character> wrongLetters;
     private static ArrayList<Character> correctLetters;
-    private static String answerWord;
-    private static String answerWordMask;
+    private static String word;
+    private static String mask;
     private static boolean gameOn;
 
 
-    public static void gameStart() {
+    public static void start() {
         errorCount = 0;
         wrongLetters = new ArrayList<>();
         correctLetters = new ArrayList<>();
-        answerWord = WordInitialization.wordInit().toUpperCase();
-        answerWordMask = "";
+        word = WordInitialization.getRandomWord().toUpperCase();
+        mask = "";
         gameOn = true;
 
         while (gameOn) {
@@ -40,9 +40,9 @@ public class Game {
                 boolean isCorrectLetter = false;
 
                 if (!correctLetters.contains(answerLetter)) {
-                    for (int i = 0; i < answerWord.length(); i++) {
-                        if (answerWord.charAt(i) == answerLetter) {
-                            getAnswerWord(i);
+                    for (int i = 0; i < word.length(); i++) {
+                        if (word.charAt(i) == answerLetter) {
+                            revealLetter(i);
 
                             if (!correctLetters.contains(answerLetter))
                                 correctLetters.add(answerLetter);
@@ -67,7 +67,7 @@ public class Game {
                     continue;
                 }
 
-                gameResult();
+                finishGame();
             }
         }
     }
@@ -75,15 +75,15 @@ public class Game {
     private static void printGame() {
         HangmanDrawing.drawHangman(errorCount);
 
-        if (answerWordMask.isEmpty()) {
-            for (int i = 0; i < answerWord.length(); i++) {
-                answerWordMask += "_";
+        if (mask.isEmpty()) {
+            for (int i = 0; i < word.length(); i++) {
+                mask += "_";
             }
         }
 
 //        System.out.println("Загаданное слово: " + answerWord);
 
-        System.out.println("Загаданное слово: " + answerWordMask);
+        System.out.println("Загаданное слово: " + mask);
         System.out.println("Правильные буквы: " + correctLetters);
         System.out.println("Неправильные буквы: " + wrongLetters);
         System.out.println("Количество ошибок: " + errorCount + "/" + errorCountMax + "\n");
@@ -105,26 +105,26 @@ public class Game {
         return true;
     }
 
-    private static void getAnswerWord(int index) {
-        char letter = answerWord.charAt(index);
-        char[] maskArray = answerWordMask.toCharArray();
+    private static void revealLetter(int index) {
+        char letter = word.charAt(index);
+        char[] maskArray = mask.toCharArray();
         maskArray[index] = letter;
-        answerWordMask = new String(maskArray);
+        mask = new String(maskArray);
     }
 
-    private static void gameResult() {
+    private static void finishGame() {
         if (errorCount == errorCountMax) {
             printGame();
-            System.out.println("Вы проиграли. Загаданное слово: " + answerWord + "\n");
+            System.out.println("Вы проиграли. Загаданное слово: " + word + "\n");
             gameOn = false;
             Menu.pressToContinue();
-            Menu.initStartMenu();
-        } else if (!answerWordMask.contains("_")) {
+            Menu.startMenu();
+        } else if (!mask.contains("_")) {
             printGame();
             System.out.println("Поздравляем! Вы выиграли!\n");
             gameOn = false;
             Menu.pressToContinue();
-            Menu.initStartMenu();
+            Menu.startMenu();
         }
     }
 }
