@@ -1,27 +1,29 @@
 import java.util.Scanner;
 
 public class Menu {
+    private static final int START = 1;
+    private static final int QUIT = 2;
+
     public static void startMenu() {
-        System.out.println("[1] Начать новую игру");
-        System.out.println("[2] Выйти из приложения");
-        System.out.println();
+        while (true) {
+            System.out.printf("[%d] Начать новую игру \n", START);
+            System.out.printf("[%d] Выйти из приложения \n", QUIT);
+            System.out.println();
 
-        System.out.println("Введите номер команды:");
-        Scanner inputScanner = new Scanner(System.in);
-        int input = inputScanner.nextInt();
+            System.out.println("Введите номер команды:");
+            Scanner inputScanner = new Scanner(System.in);
+            int input = inputScanner.nextInt();
 
-        switch (input){
-            case 1:
+            if (input == START) {
                 System.out.println("Игра начата. Удачи!");
                 Game.start();
-                break;
-            case 2:
-                System.exit(0);
-            default:
+            } else if (input == QUIT) {
+                return;
+            } else {
                 System.out.println("Введено неверное значение!");
                 System.out.println("Попробуйте еще раз.");
                 System.out.println();
-                startMenu();
+            }
         }
     }
 
