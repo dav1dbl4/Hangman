@@ -1,22 +1,30 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 public class WordInitialization {
     public static String getRandomWord() {
-        List<String> ArrayList = new ArrayList<>(List.of(
-                "Шприц", "Слово", "Томат", "Шпала", "Плита", "Кант", "Хроника", "Зал", "Галера", "Балл", "Вес", "Кафель", "Знак", "Фильтр", "Башня",
-                "Кондитер", "Омар", "Чан", "Пламя", "Банк", "Тетерев", "Муж", "Камбала", "Груз", "Кино", "Лаваш", "Калач", "Геолог", "Бальзам", "Бревно",
-                "Жердь", "Борец", "Самовар", "Карабин", "Подлокотник", "Барак", "Мотор", "Шарж", "Сустав", "Амфитеатр", "Скворечник", "Подлодка", "Затычка",
-                "Ресница", "Спичка", "Кабан", "Муфта", "Синоптик", "Характер", "Мафиози", "Фундамент", "Бумажник", "Библиофил", "Дрожжи", "Развлечение",
-                "Конечность", "Пробор", "Дуст", "Комбинация", "Мешковина", "Процессор", "Крышка", "Сфинкс", "Пассатижи", "Фунт", "Кружево", "Агитатор",
-                "Формуляр", "Прокол", "Абзац", "Караван", "Леденец", "Кашпо", "Баркас", "Кардан", "Вращение", "Заливное", "Метрдотель", "Клавиатура",
-                "Радиатор", "Сегмент", "Обещание", "Магнитофон", "Кордебалет", "Заварушка"
-        ));
+        String word;
+        List<String> words = new ArrayList<>();
+
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(new File("src/words.txt"));
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        while (scanner.hasNextLine()) {
+            word = scanner.nextLine();
+            words.add(word);
+        }
 
         Random random = new Random();
-        int randomIndex = random.nextInt(ArrayList.size());
+        int randomIndex = random.nextInt(words.size());
 
-        return ArrayList.get(randomIndex);
+        return words.get(randomIndex);
     }
 }
