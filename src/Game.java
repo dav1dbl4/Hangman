@@ -30,7 +30,7 @@ public class Game {
 
             if (isValidLetter(answerLetter)) {
                 handleLetter(answerLetter);
-                
+
                 checkEndGame();
             }
         }
