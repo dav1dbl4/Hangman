@@ -3,7 +3,8 @@ import java.util.Scanner;
 public class Menu {
     public static void startMenu() {
         System.out.println("[1] Начать новую игру");
-        System.out.println("[2] Выйти из приложения\n");
+        System.out.println("[2] Выйти из приложения");
+        System.out.println();
 
         System.out.println("Введите номер команды:");
         Scanner inputScanner = new Scanner(System.in);
@@ -17,7 +18,9 @@ public class Menu {
             case 2:
                 System.exit(0);
             default:
-                System.out.println("Введено неверное значение! \nПопробуйте еще раз.\n");
+                System.out.println("Введено неверное значение!");
+                System.out.println("Попробуйте еще раз.");
+                System.out.println();
                 startMenu();
         }
     }

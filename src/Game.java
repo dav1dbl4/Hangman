@@ -86,7 +86,8 @@ public class Game {
         System.out.println("Загаданное слово: " + mask);
         System.out.println("Правильные буквы: " + correctLetters);
         System.out.println("Неправильные буквы: " + wrongLetters);
-        System.out.println("Количество ошибок: " + errorCount + "/" + errorCountMax + "\n");
+        System.out.printf("Количество ошибок: %d/%d \n", errorCount, errorCountMax);
+        System.out.println();
     }
 
     private static boolean checkInputLetter(char answerLetter) {
@@ -115,13 +116,15 @@ public class Game {
     private static void finishGame() {
         if (errorCount == errorCountMax) {
             printGame();
-            System.out.println("Вы проиграли. Загаданное слово: " + word + "\n");
+            System.out.println("Вы проиграли. Загаданное слово: " + word);
+            System.out.println();
             gameOn = false;
             Menu.pressToContinue();
             Menu.startMenu();
         } else if (!mask.contains("_")) {
             printGame();
-            System.out.println("Поздравляем! Вы выиграли!\n");
+            System.out.println("Поздравляем! Вы выиграли!");
+            System.out.println();
             gameOn = false;
             Menu.pressToContinue();
             Menu.startMenu();
