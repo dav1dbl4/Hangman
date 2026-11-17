@@ -24,11 +24,13 @@ public class Game {
             printGame();
 
             char answerLetter = readLetter();
+            if (answerLetter == ' ') {
+                continue;
+            }
 
-            if (checkInputLetter(answerLetter)) {
-
+            if (isValidLetter(answerLetter)) {
                 handleLetter(answerLetter);
-
+                
                 checkEndGame();
             }
         }
@@ -79,8 +81,8 @@ public class Game {
         }
     }
 
-    private static boolean checkInputLetter(char answerLetter) {
-        if (!RUSSIAN_LETTERS.contains(answerLetter)) {
+    private static boolean isValidLetter(char letter) {
+        if (!RUSSIAN_LETTERS.contains(letter)) {
             System.out.println("Ошибка ввода. Попробуйте еще раз.");
             return false;
         }
